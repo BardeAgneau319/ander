@@ -28,17 +28,32 @@ const createListElement = (title, content) => {
     return element;
 };
 
-function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
-
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
-
+const addDeviceInfo = () => {
     const devicePropertiesList = document.createElement('ul');
 
     devicePropertiesList.appendChild(createListElement('Cordova', device.cordova));
     devicePropertiesList.appendChild(createListElement('Model', device.model));
     devicePropertiesList.appendChild(createListElement('Uuid', device.uuid));
 
-    document.getElementById('deviceready').append(devicePropertiesList);
+    document.getElementById('deviceinfo').append(devicePropertiesList);
+}
+
+const addNetworkInfo = () => {
+    const connection = navigator.connection;
+    const networkStatus = connection.type;
+
+    const networkPropertiesList = document.createElement('ul');
+
+    networkPropertiesList.appendChild(createListElement('Network status', networkStatus));
+
+    document.getElementById('networkinfo').append(networkPropertiesList);
+}
+
+function onDeviceReady() {
+    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
+    document.getElementById('deviceready').classList.add('ready');
+
+    addDeviceInfo();
+
+    addNetworkInfo();
 }
