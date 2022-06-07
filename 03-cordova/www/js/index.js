@@ -15,12 +15,44 @@
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
  * under the License.
- */
+*/
 
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener('deviceready', onDeviceReady, false);
 
+function onDeviceReady() {
+    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
+    document.getElementById('deviceready').classList.add('ready');
+
+    addDeviceInfo();
+
+    addNetworkInfo();
+}
+
+/**
+ * Add a listener for the Online and Offline events.
+ */
+document.addEventListener("online", onOnline, false);
+document.addEventListener("offline", onOffline, false);
+
+const onOnline = () => {
+    updateNetworkStatus();
+};
+
+const onOffline = () => {
+    updateNetworkStatus();
+};
+
+const updateNetworkStatus = () => {
+    cleanNetworkInfo();
+
+    addNetworkInfo();
+};
+
+/**
+ * DOM Manipulations
+ */
 const createListElement = (title, content) => {
     const element = document.createElement('li');
     element.innerHTML = `${title}: ${content}`;
@@ -30,12 +62,17 @@ const createListElement = (title, content) => {
 
 const addDeviceInfo = () => {
     const devicePropertiesList = document.createElement('ul');
-
+    
     devicePropertiesList.appendChild(createListElement('Cordova', device.cordova));
     devicePropertiesList.appendChild(createListElement('Model', device.model));
     devicePropertiesList.appendChild(createListElement('Uuid', device.uuid));
 
     document.getElementById('deviceinfo').append(devicePropertiesList);
+};
+
+const cleanNetworkInfo = () => {
+    const networkInfo = document.getElementById('networkinfo');
+    networkInfo.innerHTML = '';
 };
 
 const addNetworkInfo = () => {
@@ -49,11 +86,3 @@ const addNetworkInfo = () => {
     document.getElementById('networkinfo').append(networkPropertiesList);
 };
 
-function onDeviceReady() {
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
-
-    addDeviceInfo();
-
-    addNetworkInfo();
-}
