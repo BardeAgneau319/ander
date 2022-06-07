@@ -1,3 +1,18 @@
 {
-    "name": "Mini PWA"
+    "name": "Mini PWA",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "megaphone.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "megaphone(1).png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }
