@@ -36,7 +36,7 @@ const addDeviceInfo = () => {
     devicePropertiesList.appendChild(createListElement('Uuid', device.uuid));
 
     document.getElementById('deviceinfo').append(devicePropertiesList);
-}
+};
 
 const addNetworkInfo = () => {
     const connection = navigator.connection;
@@ -47,7 +47,7 @@ const addNetworkInfo = () => {
     networkPropertiesList.appendChild(createListElement('Network status', networkStatus));
 
     document.getElementById('networkinfo').append(networkPropertiesList);
-}
+};
 
 function onDeviceReady() {
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
