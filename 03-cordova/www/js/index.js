@@ -21,9 +21,24 @@
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener('deviceready', onDeviceReady, false);
 
+const createListElement = (title, content) => {
+    const element = document.createElement('li');
+    element.innerHTML = `${title}: ${content}`;
+
+    return element;
+};
+
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
 
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     document.getElementById('deviceready').classList.add('ready');
+
+    const devicePropertiesList = document.createElement('ul');
+
+    devicePropertiesList.appendChild(createListElement('Cordova', device.cordova));
+    devicePropertiesList.appendChild(createListElement('Model', device.model));
+    devicePropertiesList.appendChild(createListElement('Uuid', device.uuid));
+
+    document.getElementById('deviceready').append(devicePropertiesList);
 }
