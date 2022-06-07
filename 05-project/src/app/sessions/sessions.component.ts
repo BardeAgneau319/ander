@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { SessionsService } from '../sessions.service';
 
 @Component({
   selector: 'app-sessions',
   templateUrl: './sessions.component.html',
   styleUrls: ['./sessions.component.scss'],
 })
-export class SessionsComponent implements OnInit {
+export class SessionsComponent {
 
-  constructor() { }
+  sessions = this.sessionsService.getSessions();
 
-  ngOnInit() {}
-
+  constructor(
+    private sessionsService: SessionsService,
+  ) { }
 }

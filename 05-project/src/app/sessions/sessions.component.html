@@ -1,3 +1,5 @@
-<p>
-  sessions works!
-</p>
+<div>
+  <div class="session-item" *ngFor="let session of sessions | async">
+    <span>{{ session.title }}</span>
+  </div>
+</div>
