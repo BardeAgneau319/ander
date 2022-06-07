@@ -1,36 +1,37 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blog DevFest Nantes</title>
 
-</head>
-<body>
-
-<ion-app>
-    <ion-header>
-        <ion-toolbar>
-            <ion-title>Blog DeevFest Nantes</ion-title>
-        </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-        <ion-list id="event-list">
-
-        </ion-list>
-    </ion-content>
-
-    <ion-footer>
-        <ion-toolbar>
-        <ion-title>Footer</ion-title>
-        </ion-toolbar>
-    </ion-footer>
-</ion-app>
-
     <script src="index.js"></script>
-</body>
-</html>
+</head>
 
+<body>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Blog DeevFest Nantes</ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+            <ion-list id="event-list"></ion-list>
+
+
+            <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                <ion-fab-button id="camera-trigger">
+                    <ion-icon name="camera"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+        </ion-content>
+    </ion-app>
+
+    <ion-footer></ion-footer>
+</body>
+
+</html>
