@@ -1,0 +1,6 @@
+{
+  "appId": "fr.demo.capacitor",
+  "appName": "04-capacitor",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
