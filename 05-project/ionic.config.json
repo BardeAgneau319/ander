@@ -1,0 +1,7 @@
+{
+  "name": "dev-fest",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
