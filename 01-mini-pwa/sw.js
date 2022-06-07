@@ -14,18 +14,18 @@ self.addEventListener('install', event => {
     event.waitUntil(
         Promise.all([
             caches.open(STATIC_CACHE_NAME)
-            .then(cache => {
-                return cache.addAll(FILES_TO_CACHE);
-            }),
-              fetch('https://raw.githubusercontent.com/DevInstitut/conference-data/master/speakers.json')
-                  .then(resp => resp.json())
-                  .then(speakers => {
-                      localforage.config({storeName: 'speakers'})
-                      for (key in speakers) {
-                          localforage.setItem(key, speakers[key])
-                      }
-                  })]
-            )
+                .then(cache => {
+                    return cache.addAll(FILES_TO_CACHE);
+                }),
+            fetch('https://raw.githubusercontent.com/DevInstitut/conference-data/master/speakers.json')
+                .then(resp => resp.json())
+                .then(speakers => {
+                    localforage.config({ storeName: 'speakers' })
+                    for (key in speakers) {
+                        localforage.setItem(key, speakers[key])
+                    }
+                })]
+        )
     );
 });
 
@@ -61,21 +61,35 @@ self.addEventListener('fetch', event => {
             return fetch(event.request)
 
         })
-        .then(function (response) {
+            .then(async function (response) {
 
-            return caches.open(STATIC_CACHE_NAME).then(cache => {
-
+                const cache = await caches.open(STATIC_CACHE_NAME);
                 // mise en cache des ressources qui ne contiennent pas no.cache
                 if (event.request.url.indexOf('no.cache') < 0) {
                     cache.put(event.request.url, response.clone());
                 }
                 return response;
-            });
-        })
-        .catch(error => {
-            console.log("oops");
-        })
+            })
+            .catch(error => {
+                console.log("oops");
+            })
     );
 });
 
 self.skipWaiting();
+
+// ecoute de message provenant d'un client
+
+self.addEventListener('message', event => {
+    console.log(event.data)
+
+    // exemple d'envoi de message à tous les clients (en local)
+    self.clients.matchAll().then(function (clients) {
+        clients.forEach(function (client) {
+            client.postMessage({
+                "command": "HELLO_LES_CLIENTS",
+                "message": "Hello je suis un SW"
+            });
+        })
+    })
+})
