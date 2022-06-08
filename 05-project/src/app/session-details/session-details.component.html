@@ -25,7 +25,7 @@
       <ion-toolbar>
         <ion-title>Notes de session</ion-title>
         <ion-buttons slot="end">
-          <ion-button [disabled]="!notesUpdated" color="primary" fill="solid">Enregistrer</ion-button>
+          <ion-button [disabled]="!notesUpdated" color="primary" fill="solid" (click)="saveNotes()">Enregistrer</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
