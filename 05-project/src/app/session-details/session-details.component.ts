@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
 import { Session } from '../session';
 import { SessionsService } from '../sessions.service';
 import { SpeakersService } from '../speakers.service';
@@ -18,6 +16,12 @@ export class SessionDetailsComponent implements OnInit {
 
   session: Session;
 
+  notes: {
+    content: string,
+    photos: string[],
+  } = { content: "", photos: [] };
+  notesUpdated: boolean = false;
+
   readonly IMAGE_ROOT = SpeakersService.IMAGE_ROOT
 
   constructor(
@@ -30,4 +34,9 @@ export class SessionDetailsComponent implements OnInit {
     this.sessionsService.getSessionById(this.id).subscribe(s => this.session=s);
   }
 
+  onNotesInput(event: any) {
+    this.notes.content = event.target.value;
+
+    this.notesUpdated = true;
+  }
 }

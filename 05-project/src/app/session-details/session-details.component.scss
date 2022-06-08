@@ -5,3 +5,13 @@
         display: inline;
     }
 }
+
+.notes-modal {
+    --max-height: 90%;
+}
+
+.notes-content {
+    --padding-start: 12px;
+    --padding-end: 12px;
+    --padding-top: 12px;
+}

@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content fullscreen>
   <div id="session-container" *ngIf="session">
     <h2>{{ session.title }}</h2>
     <p>{{ session.description }}</p>
@@ -6,10 +6,39 @@
       <ion-item *ngFor="let speaker of session.speakers">
         <ion-avatar slot="start">
           <img src="{{IMAGE_ROOT}}{{speaker.photoUrl}}"/>
-          <!-- <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"> -->
         </ion-avatar>
         <ion-label>{{speaker.name}}</ion-label>
       </ion-item>
     </ion-list>
   </div>
+
+  <ion-modal
+  [isOpen]="true"
+  [breakpoints]="[0.08, 1]"
+  [initialBreakpoint]="0.1"
+  [canDismiss]="false"
+  class="notes-modal"
+>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Notes de session</ion-title>
+        <ion-buttons slot="end">
+          <ion-button [disabled]="!notesUpdated" color="primary" fill="solid">Enregistrer</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="notes-content">
+      <ion-item fill="solid">
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea autoGrow rows="7" [value]="notes.content" (input)="onNotesInput($event)"></ion-textarea>
+      </ion-item>
+
+      <ion-button>
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Ajouter une photo
+      </ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
 <ion-content>
