@@ -12,6 +12,8 @@ export class SessionsComponent {
 
   sessions = this.sessionsService.getSessions();
 
+  IMAGE_URL = "https://devfest2018.gdgnantes.com/"
+
   constructor(
     private sessionsService: SessionsService,
     private speakersService: SpeakersService,
