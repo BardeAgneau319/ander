@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { SessionsService } from '../sessions.service';
+import { SpeakersService } from '../speakers.service';
 
 @Component({
   selector: 'app-sessions',
@@ -13,5 +14,6 @@ export class SessionsComponent {
 
   constructor(
     private sessionsService: SessionsService,
+    private speakersService: SpeakersService,
   ) { }
 }
