@@ -1,3 +1,25 @@
-<p>
-  note-creation works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Notes de session</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!notesUpdated" color="primary" fill="solid" (click)="saveNotes()">Enregistrer</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="notes" class="notes-content">
+  <ion-item fill="solid">
+    <ion-label position="floating">Description</ion-label>
+    <ion-textarea autoGrow rows="7" [value]="notes.content" (input)="onNotesInput($event)"></ion-textarea>
+  </ion-item>
+
+  <ion-button (click)="startCamera()">
+    <ion-icon slot="start" name="camera"></ion-icon>
+    Ajouter une photo
+  </ion-button>
+
+  <ion-list class="gallery">
+    <ion-item class="gallery-item" *ngFor="let picture of notes.pictures">
+      <ion-img class="gallery-img" [src]="picture"></ion-img>
+    </ion-item>
+  </ion-list>
+</ion-content>
