@@ -1,5 +1,31 @@
-<div>
-  <div class="session-item" *ngFor="let session of sessions | async">
-    <span>{{ session.title }}</span>
-  </div>
-</div>
+<ion-content fullscreen>
+  <ion-list>
+    <ion-item button detail [routerLink]="['/sessions', session.id]" class="session-item" *ngFor="let session of sessions | async">
+      <ion-label>
+        <h2>{{ session.title }}</h2>
+        <ion-chip *ngFor="let speaker of session.speakers">
+          <ion-avatar>
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjYzVkYmZmIiBkPSJNMCAwaDUxMnY1MTJIMHoiLz48cGF0aCBkPSJNMjU2IDMwNGM2MS42IDAgMTEyLTUwLjQgMTEyLTExMlMzMTcuNiA4MCAyNTYgODBzLTExMiA1MC40LTExMiAxMTIgNTAuNCAxMTIgMTEyIDExMnptMCA0MGMtNzQuMiAwLTIyNCAzNy44LTIyNCAxMTJ2NTZoNDQ4di01NmMwLTc0LjItMTQ5LjgtMTEyLTIyNC0xMTJ6IiBmaWxsPSIjODJhZWZmIi8+PC9zdmc+"
+            />
+          </ion-avatar>
+          <ion-label>{{ speaker }}</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="session.track">
+          <ion-icon name="location"></ion-icon>
+          <ion-label>{{ session.track.title }}</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="session.type" >
+          <ion-label>{{ session.type }}</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="session.category">
+          <ion-icon name="pricetag"></ion-icon>
+          <ion-label>{{ session.category }}</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="session.complexity" >
+          <ion-label>{{ session.complexity }}</ion-label>
+        </ion-chip>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
