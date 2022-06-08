@@ -29,10 +29,10 @@ export class SessionDetailsComponent implements OnInit {
     private notesService: NotesService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.id = Number(this.activatedRoute.snapshot.params["id"]);
     this.sessionsService.getSessionById(this.id).subscribe(s => this.session=s);
-    this.notes = this.notesService.getNote(this.id);
+    this.notes = await this.notesService.getNote(this.id);
   }
 
   onNotesInput(event: any) {
@@ -41,8 +41,8 @@ export class SessionDetailsComponent implements OnInit {
     this.notesUpdated = true;
   }
 
-  saveNotes() {
-    this.notesService.saveNote(this.notes);
+  async saveNotes() {
+    await this.notesService.saveNote(this.notes);
     this.notesUpdated = false;
   }
 }

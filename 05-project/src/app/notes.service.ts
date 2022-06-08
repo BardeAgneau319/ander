@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@capacitor/storage';
 import { Note } from './notes';
 
 @Injectable({
@@ -6,23 +7,26 @@ import { Note } from './notes';
 })
 export class NotesService {
 
-  notes: Map<number, Note> = new Map<number, Note>();
-
   constructor() { }
 
-  saveNote(note: Note): void {
-    this.notes.set(note.id, note);
+  async saveNote(note: Note): Promise<void> {
+    await Storage.set({
+      key: note.id.toString(),
+      value: JSON.stringify(note)
+    })
   }
 
-  getNote(id: number): Note {
-    if (this.notes.has(id)) {
-      return this.notes.get(id);
+  async getNote(id: number): Promise<Note> {
+    const { value } = await Storage.get({ key: id.toString() });
+
+    if (value === null) {
+      return {
+        id: id,
+        content: '',
+        pictures: []
+      };
     }
 
-    return {
-      id: id,
-      content: '',
-      pictures: []
-    };
+    return JSON.parse(value);
   }
 }
