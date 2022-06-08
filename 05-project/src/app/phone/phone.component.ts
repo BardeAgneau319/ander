@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
 
 @Component({
   selector: 'app-phone',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhoneComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public device: Device
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  deviceAvailable(): boolean {
+    return !!(this.device?.platform);
+  }
 
 }

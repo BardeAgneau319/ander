@@ -13,6 +13,7 @@ import { PhoneComponent } from './phone/phone.component';
 import { SessionDetailsComponent } from './session-details/session-details.component';
 import { HomePage } from './home/home.page';
 import { CachingInterceptor } from './cache/caching.interceptor';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CachingInterceptor } from './cache/caching.interceptor';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true },
+    Device
   ],
   bootstrap: [AppComponent],
 })
