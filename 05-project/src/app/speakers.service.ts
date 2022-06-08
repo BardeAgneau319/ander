@@ -9,6 +9,7 @@ import { Speaker } from './speaker';
 })
 export class SpeakersService {
   API_ROOT = "https://devfest-nantes-2018-api.cleverapps.io/"
+  public static readonly IMAGE_ROOT = "https://devfest2018.gdgnantes.com/"
 
   constructor(
     private http: HttpClient,

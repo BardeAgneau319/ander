@@ -1,11 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Session, SessionResponse } from './session';
-
-import { catchError, map, mapTo, mergeMap, pluck, retry, toArray } from 'rxjs/operators';
-import { forkJoin, from, of, throwError } from 'rxjs';
+import { forkJoin, throwError } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
+import { SessionResponse } from './session';
 import { Speaker } from './speaker';
 import { SpeakersService } from './speakers.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,12 @@ export class SessionsService {
     );
   }
 
+  getSessionById(id: number) {
+    return this.getSessions().pipe(
+      map(sessions => sessions.find(s => s.id === id))
+    );
+  }
+  
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('An error occurred:', error.error);

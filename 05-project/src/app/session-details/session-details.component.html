@@ -1,3 +1,15 @@
-<p>
-  session-details works!
-</p>
+<ion-content>
+  <div id="session-container" *ngIf="session">
+    <h2>{{ session.title }}</h2>
+    <p>{{ session.description }}</p>
+    <ion-list>
+      <ion-item *ngFor="let speaker of session.speakers">
+        <ion-avatar slot="start">
+          <img src="{{IMAGE_ROOT}}{{speaker.photoUrl}}"/>
+          <!-- <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"> -->
+        </ion-avatar>
+        <ion-label>{{speaker.name}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+<ion-content>
