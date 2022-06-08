@@ -1,3 +1,6 @@
+import { Observable } from "rxjs";
+import { Speaker } from "./speaker";
+
 export interface Session {
     id: number;
     title: string;
@@ -11,6 +14,10 @@ export interface Session {
     track: {
         title: string
     };
-    speakers: Array<number>;
+    speakers: Array<Speaker>;
     complexity: string;
+}
+
+export interface SessionResponse extends Omit<Session, "speakers"> {
+    speakers: Array<number>;
 }
