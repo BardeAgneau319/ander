@@ -16,3 +16,13 @@
     --padding-end: 12px;
     --padding-top: 12px;
 }
+
+.gallery {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.gallery-img {
+    height: 15vh;
+}

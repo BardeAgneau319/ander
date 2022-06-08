@@ -35,10 +35,16 @@
         <ion-textarea autoGrow rows="7" [value]="notes.content" (input)="onNotesInput($event)"></ion-textarea>
       </ion-item>
 
-      <ion-button>
+      <ion-button (click)="startCamera()">
         <ion-icon slot="start" name="camera"></ion-icon>
         Ajouter une photo
       </ion-button>
+
+      <ion-list class="gallery">
+        <ion-item class="gallery-item" *ngFor="let picture of notes.pictures">
+          <ion-img class="gallery-img" [src]="picture"></ion-img>
+        </ion-item>
+      </ion-list>
     </ion-content>
   </ng-template>
 </ion-modal>

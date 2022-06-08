@@ -5,6 +5,7 @@ import { NotesService } from '../notes.service';
 import { Session } from '../session';
 import { SessionsService } from '../sessions.service';
 import { SpeakersService } from '../speakers.service';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-session-details',
@@ -44,5 +45,16 @@ export class SessionDetailsComponent implements OnInit {
   async saveNotes() {
     await this.notesService.saveNote(this.notes);
     this.notesUpdated = false;
+  }
+
+  async startCamera() {
+    const { dataUrl } = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.DataUrl
+    });
+
+    this.notes.pictures.push(dataUrl);
+    this.notesUpdated = true;
   }
 }
