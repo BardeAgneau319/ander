@@ -41,7 +41,7 @@ export class SessionDetailsComponent implements OnInit {
       initialBreakpoint: 0.08,
       breakpoints: [0.08, 1],
       backdropBreakpoint: 0.5,
-      canDismiss: false,
+      canDismiss: true,
       backdropDismiss: false,
       cssClass: "notes-modal"
     });
