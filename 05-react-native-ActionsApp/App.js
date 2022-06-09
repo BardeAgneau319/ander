@@ -35,6 +35,7 @@ export default function App() {
   // états de l'application
   // il y aura probablement d'autres informations à stocker
   const [texteSaisie, setTexteSaisie] = useState('')
+  const [actions, setActions] = useState([])
 
 
   /**
@@ -44,6 +45,8 @@ export default function App() {
    */
   const quandLaSaisieChange = (nouvelleSaisie) => {
     console.log('la saisie à changée', nouvelleSaisie)
+    setTexteSaisie(nouvelleSaisie)
+    console.log(texteSaisie)
   }
 
   /**
@@ -51,13 +54,31 @@ export default function App() {
    */
   const validerNouvelleAction = () => {
     console.log('Vous avez cliqué sur Valider !')
+    const newAction = {
+      title: texteSaisie?.length > 0 ? texteSaisie : `Action ${actions.length + 1}`,
+      done: false,
+      key: actions.length,
+    }
+
+    setActions([...actions, newAction])
+
+    console.log(actions)
+    
+    setTexteSaisie("")
   }
+
+  const onToogleDone = (i) => {
+    console.log("Toogle done", !actions[i].done)
+    actions[i].done = !actions[i].done;
+    setActions(actions)
+  }
+
     return (
         <View style={styles.conteneur}>
           <ScrollView keyboardShouldPersistTaps='always' style={styles.content}>
             <Entete/>
             <Saisie texteSaisie={texteSaisie} evtTexteModifie={(titre) => quandLaSaisieChange(titre)}/>
-            <ListeActions />
+            <ListeActions actions={actions} evtToogleDone={i => onToogleDone(i)}/>
             <BoutonCreer onValider={() => validerNouvelleAction()}/>
           </ScrollView>
           <Menu/>

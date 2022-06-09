@@ -18,8 +18,8 @@ import {StyleSheet, TextInput, View} from 'react-native'
  * TODO 4. Valoriser la propriété `onChangeText` de l'élément <TextInput> avec la valeur de `evtTexteModifie`
  */
 export const Saisie = ({texteSaisie, evtTexteModifie}) => (
-    <View>
-        <TextInput
+    <View style={styles.conteneurSaisie}>
+        <TextInput style={styles.texteSaisie} value={texteSaisie} onChangeText={evtTexteModifie}
             placeholder='Quelle prochaine action ?'
             placeholderTextColor='#CACACA'
             selectionColor='#666666'/>
